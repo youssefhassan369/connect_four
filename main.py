@@ -1,5 +1,6 @@
+from functions import *
+from Heuristic import *
 
 if __name__ == '__main__':
-    print('yes')
-
-
+    board=generateInitialState()
+    print(Heuristic(board))
