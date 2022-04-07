@@ -1,12 +1,11 @@
 class Node:
-    def __init__(self, value, alpha, beta, col1, col2, col3, col4, col5, col6, col7):
+    def __init__(self, value, alpha, beta, row0, row1, row2, row3, row4, row5):
         self.value = value
         self.alpha = alpha
         self.beta = beta
-        self.col1 = col1
-        self.col2 = col2
-        self.col3 = col3
-        self.col4 = col4
-        self.col5 = col5
-        self.col6 = col6
-        self.col7 = col7
+        self.row0 = row0
+        self.row1 = row1
+        self.row2 = row2
+        self.row3 = row3
+        self.row4 = row4
+        self.row5 = row5
