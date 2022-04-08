@@ -60,7 +60,7 @@ def GenerateChildren(state):
 
     return list1
 
-
+import time
 class Node:
     def __init__(self, value, alpha, beta, col0, col1, col2, col3, col4, col5, col6):
         self.value = value
@@ -74,3 +74,5 @@ class Node:
         self.col5 = col5
         self.col6 = col6
         self.children = GenerateChildren(self)
+        self.id=time.time()
+
