@@ -1,29 +1,41 @@
 import math
 
-from Node import Node
+from Node import *
 from Heuristic import Heuristic
-import copy
 import numpy as np
 
 
-def Max(node, k):
+def Max(node, k, f):
     if k == 0:
-        return Heuristic(node)
+        node.value = Heuristic(node)
+        return node.value
     list1 = []
     for i in range(len(node.children)):
-        list1.append(Min(node.children[i], k - 1))
-    return max(list1)
+        temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+                    node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
+
+        list1.append(Min(temp, k - 1, f))
+
+    node.value = max(list1)
+    if k == f:
+        return node.children[np.argmax(list1)], node.value
+    return node.value
 
 
-def Min(node, k):
+def Min(node, k, f):
     if k == 0:
-        return Heuristic(node)
+        node.value = Heuristic(node)
+        return node.value
     list1 = []
     for i in range(len(node.children)):
-        list1.append(Max(node.children[i], k - 1))
-    return min(list1)
+        temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+                    node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
+        list1.append(Max(temp, k - 1, f))
+    node.value = min(list1)
+    if k == f:
+        return node.children[np.argmin(list1)], node.value
+    return node.value
 
 
-def MinMax(k,state):
-    Max(state,k)
-
+def MinMax(state, k, f):
+    Max(state, k, f)
