@@ -7,6 +7,7 @@ from gui import *
 
 if __name__ == '__main__':
     board = generateInitialState()
+
     #print(Heuristic(board))
     #MinMax(board, 5, 5)
     game(board)
