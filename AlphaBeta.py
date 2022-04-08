@@ -10,7 +10,7 @@ def AlphaBetaMin(node, k, f):
         return node.value
     list1 = []
     for i in range(len(node.children)):
-        temp = Node(0,node.beta,inf, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+        temp = Node(0, node.beta, inf, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
         list1.append(Max(temp, k - 1, f))
         best = min(list1)
@@ -43,6 +43,7 @@ def AlphaBetaMax(node, k, f):
         return node.children[np.argmax(list1)], node.value
     return node.value
 
-def AlphaBeta(state,k,f):
-    node,val=AlphaBetaMax(state,k,f)
+
+def AlphaBeta(state, k, f):
+    node, val = AlphaBetaMax(state, k, f)
     print(node.col3)
