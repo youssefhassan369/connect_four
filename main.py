@@ -7,12 +7,9 @@ from gui import *
 
 if __name__ == '__main__':
     board = generateInitialState()
-<<<<<<< Updated upstream
-    print(Heuristic(board))
-    MinMax(board, 5, 5)
-=======
+    #print(Heuristic(board))
+    #MinMax(board, 5, 5)
     game(board)
     #print(Heuristic(board))
     #MinMax(board, 5, 5)
->>>>>>> Stashed changes
    # AlphaBeta(board,5,5)
