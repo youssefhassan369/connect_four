@@ -38,4 +38,5 @@ def Min(node, k, f):
 
 
 def MinMax(state, k, f):
-    Max(state, k, f)
+    state, value = Max(state, k, f)
+    return state

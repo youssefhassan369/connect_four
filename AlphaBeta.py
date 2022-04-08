@@ -46,4 +46,4 @@ def AlphaBetaMax(node, k, f):
 
 def AlphaBeta(state, k, f):
     node, val = AlphaBetaMax(state, k, f)
-    print(node.col3)
+    return node
