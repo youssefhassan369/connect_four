@@ -133,11 +133,11 @@ def FindMatchingCol(total_string):
     # blocking opponent from completing 4 yellow
             # 3 yellow after each other (4th red on the right)
             if total_string[i*step+j]=='y' and total_string[i*step+j+1]=='y' and total_string[i*step+j+2]=='y' and total_string[i*step+j+3]=='r':
-                Column_score += 4
+                Column_score += 6   #edited was 4
 
             # 3 yellow after each other (4th red on the left)
             if total_string[i*step+j]=='r' and total_string[i*step+j+1]=='y' and total_string[i*step+j+2]=='y' and total_string[i*step+j+3]=='y':
-                Column_score += 4
+                Column_score += 6   #edited was 4
 
             # 1 yellow then red then 2 yellow after each other
             if total_string[i*step+j]=='y' and total_string[i*step+j+1]=='r' and total_string[i*step+j+2]=='y' and total_string[i*step+j+3]=='y':

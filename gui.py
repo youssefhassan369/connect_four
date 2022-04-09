@@ -38,33 +38,15 @@ def game(board, mode):
                     column_number = int(math.floor(x / SQUARESIZE))
                     flag,result = update_col(board, column_number)
                     if flag:
-                        board = result
-                        print(board.col0)
+                        board=Node(0,-99,99,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
                         turn += 1
                         turn = turn % 2
             if turn == 0:
                 if mode == 1:
-                    #print(board.col0)
-                    #print(board.col1)
-                    state = MinMax(board, 3, 3)
-                    #print(state.col0)
-
-                    #print(state.col0)
-                    # state = Child(state.col0, state.col1, state.col2, state.col3, state.col4, state.col5,
-                    #              state.col6)
-                    # print(state.col0)
-                    # board=Node(0,0,0,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
-                    # board.col0=state.col0
-                    # board.col1=state.col1
-                    # board.col2=state.col2
-                    # board.col3=state.col3
-                    # board.col4=state.col4
-                    # board.col5=state.col5
-                    # board.col6=state.col6
+                    f= MinMax(board, 4, 4)
+                    board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
                     turn += 1
                     turn = turn % 2
-                    #board=state
-                   # print(board.col0)
 
         draw_board(board)
 
