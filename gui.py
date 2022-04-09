@@ -41,14 +41,15 @@ def game(board, mode):
                         board=Node(0,-99,99,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
                         turn += 1
                         turn = turn % 2
+                        draw_board(board)
+
             if turn == 0:
                 if mode == 1:
                     f= MinMax(board, 4, 4)
                     board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
                     turn += 1
                     turn = turn % 2
-
-        draw_board(board)
+                    draw_board(board)
 
 
 def draw_board(board):
