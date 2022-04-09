@@ -4,9 +4,12 @@ import numpy as np
 from treelib import Node as N, Tree
 
 tree = Tree()
+count=0
 
 
 def Max(node, k, f):
+    global count
+    count+=1
     # global tree
     if k == 0:
         node.value = Heuristic(node)
@@ -31,6 +34,8 @@ def Max(node, k, f):
 
 def Min(node, k, f):
     # global tree
+    global count
+    count += 1
     if k == 0:
         node.value = Heuristic(node)
         return node.value
@@ -52,6 +57,8 @@ def Min(node, k, f):
 
 
 def MinMax(state, k, f):
+    global count
+    count=0
     # print(state.col0)
     # print(state.children[0].col0)
     # global tree
@@ -61,4 +68,5 @@ def MinMax(state, k, f):
     #print(state2.col3)
     # n.tag=value
     # tree.show()
+    print(count)
     return state2
