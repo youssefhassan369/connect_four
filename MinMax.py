@@ -47,12 +47,13 @@ def Min(node, k, f):
 
 
 def MinMax(state, k, f):
-    # print(state.col0)
+    #print(state.col0)
+    #print(state.children[1].col0)
     # global tree
     # n=tree.create_node("0",state.id)
     state1, value = Max(state, k, f)
     state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
-    #print(state2.col0)
+    #print(state2.col3)
     # n.tag=value
     # tree.show()
-    return state
+    return state2

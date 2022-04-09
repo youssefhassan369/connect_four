@@ -3,12 +3,19 @@ from Node import *
 
 
 def changeCol(col):
-    index = col.find('e')
-    if index == -1:
-        return -1
-    temp = list(col)
-    temp[index] = 'r'
-    return "".join(temp)
+    # index = col.find('e')
+    # if index == -1:
+    #     return -1
+    # temp = list(col)
+    # temp[index] = 'r'
+    # return "".join(temp)
+    temp=list(col)
+    for i in range(len(temp)):
+        if temp[i]=='e':
+            temp[i]=='r'
+            return "".join(temp)
+            break
+    return -1
 
 
 class Child:

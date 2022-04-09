@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     #print(Heuristic(board))
     #temp=MinMax(board, 3, 3)
-    #print(temp.col0)
+    #print(temp.col3)
     game(board,1)
     #print(Heuristic(board))
     #res,tree=MinMax(board, 5, 5)

@@ -36,15 +36,20 @@ def game(board, mode):
                     x = event.pos[0]
                     y = event.pos[1]
                     column_number = int(math.floor(x / SQUARESIZE))
-                    flag = update_col(board, column_number)
+                    flag,result = update_col(board, column_number)
                     if flag:
+                        board = result
+                        print(board.col0)
                         turn += 1
                         turn = turn % 2
             if turn == 0:
                 if mode == 1:
+                    #print(board.col0)
+                    #print(board.col1)
                     state = MinMax(board, 3, 3)
-                    print(state.col3)
-                   # print(state.col0)
+                    #print(state.col0)
+
+                    #print(state.col0)
                     # state = Child(state.col0, state.col1, state.col2, state.col3, state.col4, state.col5,
                     #              state.col6)
                     # print(state.col0)
@@ -58,7 +63,8 @@ def game(board, mode):
                     # board.col6=state.col6
                     turn += 1
                     turn = turn % 2
-                    board=copy.copy(state)
+                    #board=state
+                   # print(board.col0)
 
         draw_board(board)
 
@@ -84,62 +90,62 @@ def update_col(board, col):
     if col == 0:
         index = board.col0.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col0)
         temp[index] = 'y'
         board.col0 = "".join(temp)
-        return True
+        return True,board
 
     if col == 1:
         index = board.col1.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col1)
         temp[index] = 'y'
         board.col1 = "".join(temp)
-        return True
+        return True,board
 
     if col == 2:
         index = board.col2.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col2)
         temp[index] = 'y'
         board.col2 = "".join(temp)
-        return True
+        return True,board
 
     if col == 3:
         index = board.col3.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col3)
         temp[index] = 'y'
         board.col3 = "".join(temp)
-        return True
+        return True,board
 
     if col == 4:
         index = board.col4.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col4)
         temp[index] = 'y'
         board.col4 = "".join(temp)
-        return True
+        return True,board
 
     if col == 5:
         index = board.col5.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col5)
         temp[index] = 'y'
         board.col5 = "".join(temp)
-        return True
+        return True,board
 
     if col == 6:
         index = board.col6.find('e')
         if index == -1:
-            return False
+            return False,board
         temp = list(board.col6)
         temp[index] = 'y'
         board.col6 = "".join(temp)
-        return True
+        return True,board
