@@ -22,7 +22,7 @@ size = (width, height)
 screen = pygame.display.set_mode(size)
 
 
-def game(board, mode):
+def game(board, mode,k):
     pygame.init()
     draw_board(board)
     pygame.display.update()
@@ -45,12 +45,23 @@ def game(board, mode):
 
             if turn == 0:
                 if mode == 1:
-                    f= MinMax(board, 4, 4)
+                    f,count1= MinMax(board, k, k)
                     board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                    print("Nodes expanded : ",count1)
+                    turn += 1
+                    turn = turn % 2
+                    draw_board(board)
+                if mode == 2:
+                    f,count2= AlphaBeta(board, k, k)
+                    board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                    print("Nodes expanded : ", count2)
                     turn += 1
                     turn = turn % 2
                     draw_board(board)
 
+    user,computer=Score(board)
+    print(user)
+    print(computer)
 
 def draw_board(board):
     total_string = ''.join(reversed(board.col0)) + ''.join(reversed(board.col1)) + ''.join(

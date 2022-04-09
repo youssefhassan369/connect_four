@@ -5,7 +5,7 @@ from math import inf
 from treelib import Node as N, Tree
 
 tree = Tree()
-count = 1
+count = 0
 
 
 def AlphaBetaMin(node, k, f):
@@ -13,13 +13,15 @@ def AlphaBetaMin(node, k, f):
     global count
     count += 1
     if k == 0:
-        node.value = Heuristic(node)
+        computer = Heuristic(node,'r','y')
+        user = Heuristic(node,'y','r')
+        node.value = computer-2*user
         return node.value
     list1 = []
     for i in range(len(node.children)):
         temp = Node(0, node.beta, inf, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        print('min')
+        #print('min')
         # n = tree.create_node("0", temp.id, parent=node.id)
         # print(n)
         value = Max(temp, k - 1, f)
@@ -40,13 +42,15 @@ def AlphaBetaMax(node, k, f):
     global count
     count += 1
     if k == 0:
-        node.value = Heuristic(node)
+        computer = Heuristic(node, 'r', 'y')
+        user = Heuristic(node, 'y', 'r')
+        node.value = computer-2*user
         return node.value
     list1 = []
     for i in range(len(node.children)):
         temp = Node(0, -9999, node.alpha, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        print('max')
+        #print('max')
         # n = tree.create_node("0", temp.id, parent=node.id)
         # print(n)
         value = Min(temp, k - 1, f)
@@ -65,13 +69,14 @@ def AlphaBetaMax(node, k, f):
 
 def AlphaBeta(state, k, f):
     global count
+    count=0
     # global tree
     # n=tree.create_node("0", state.id)
     state1, value = AlphaBetaMax(state, k, f)
     state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
     # n.tag = value + ',' + state.alpha + ',' + state.beta
     # tree.show()
-    print(count)
-    count=0
+    #print(count)
+    #count=0
 
-    return state2
+    return state2,count

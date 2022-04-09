@@ -12,7 +12,7 @@ def Max(node, k, f):
     count+=1
     # global tree
     if k == 0:
-        node.value = Heuristic(node)
+        node.value = Heuristic(node,'r','y')
         return node.value
     list1 = []
     for i in range(len(node.children)):
@@ -23,7 +23,7 @@ def Max(node, k, f):
         # n.tag=value
         list1.append(value)
     if len(list1)==0:
-        node.value=Heuristic(node)
+        node.value=Heuristic(node,'r','y')
         return node.value
     node.value = max(list1)
     if k == f:
@@ -37,7 +37,7 @@ def Min(node, k, f):
     global count
     count += 1
     if k == 0:
-        node.value = Heuristic(node)
+        node.value = Heuristic(node,'r','y')
         return node.value
     list1 = []
     for i in range(len(node.children)):
@@ -48,7 +48,7 @@ def Min(node, k, f):
         # n.tag=value
         list1.append(value)
     if len(list1)==0:
-        node.value=Heuristic(node)
+        node.value=Heuristic(node,'r','y')
         return node.value
     node.value = min(list1)
     if k == f:
@@ -68,5 +68,5 @@ def MinMax(state, k, f):
     #print(state2.col3)
     # n.tag=value
     # tree.show()
-    print(count)
-    return state2
+    #print(count)
+    return state2,count
