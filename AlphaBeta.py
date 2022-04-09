@@ -1,10 +1,12 @@
 from Heuristic import Heuristic
-from Node import *
+from Node import Node
 from MinMax import *
 from math import inf
-
+from treelib import Node as N, Tree
+tree = Tree()
 
 def AlphaBetaMin(node, k, f):
+    global tree
     if k == 0:
         node.value = Heuristic(node)
         return node.value
@@ -12,9 +14,14 @@ def AlphaBetaMin(node, k, f):
     for i in range(len(node.children)):
         temp = Node(0, node.beta, inf, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        list1.append(Max(temp, k - 1, f))
+        print('min')
+        n = tree.create_node("0", temp.id, parent=node.id)
+        print(n)
+        value=Max(temp, k - 1, f)
+        list1.append(value)
         best = min(list1)
         node.beta = min(node.beta, best)
+        n.tag = value + ',' + node.alpha + ',' + node.beta
         if node.beta <= node.alpha:
             break
     node.value = min(list1)
@@ -24,17 +31,22 @@ def AlphaBetaMin(node, k, f):
 
 
 def AlphaBetaMax(node, k, f):
+    global tree
     if k == 0:
         node.value = Heuristic(node)
         return node.value
     list1 = []
     for i in range(len(node.children)):
-        temp = Node(0, -inf, node.alpha, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+        temp = Node(0, -9999, node.alpha, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-
-        list1.append(Min(temp, k - 1, f))
+        print('max')
+        n = tree.create_node("0", temp.id, parent=node.id)
+        #print(n)
+        value = Min(temp, k - 1, f)
+        list1.append(value)
         best = max(list1)
         node.alpha = max(node.alpha, best)
+        n.tag = value + ',' + node.alpha + ',' + node.beta
         if temp.alpha >= temp.beta:
             break
 
@@ -45,5 +57,10 @@ def AlphaBetaMax(node, k, f):
 
 
 def AlphaBeta(state, k, f):
-    node, val = AlphaBetaMax(state, k, f)
-    return node
+    global tree
+    n=tree.create_node("0", state.id)
+    state, value = AlphaBetaMax(state, k, f)
+    n.tag = value + ',' + state.alpha + ',' + state.beta
+    tree.show()
+
+    return state, tree

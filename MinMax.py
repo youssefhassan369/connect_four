@@ -16,11 +16,10 @@ def Max(node, k, f):
     for i in range(len(node.children)):
         temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        n=tree.create_node("0", temp.id, parent=node.id)
+        n = tree.create_node("0", temp.id, parent=node.id)
         value = Min(temp, k-1, f)
         n.tag=value
         list1.append(value)
-
 
     node.value = max(list1)
     if k == f:
@@ -38,7 +37,7 @@ def Min(node, k, f):
         temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
         n=tree.create_node("0", temp.id, parent=node.id)
-        value = Min(temp, k - 1, f)
+        value = Max(temp, k - 1, f)
         n.tag=value
         list1.append(value)
     node.value = min(list1)
@@ -54,4 +53,4 @@ def MinMax(state, k, f):
     n.tag=value
     tree.show()
 
-    return state
+    return state,tree

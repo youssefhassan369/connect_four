@@ -74,5 +74,5 @@ class Node:
         self.col5 = col5
         self.col6 = col6
         self.children = GenerateChildren(self)
-        self.id=time.time()
+        self.id = time.time()
 
