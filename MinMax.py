@@ -7,7 +7,7 @@ from treelib import Node as N, Tree
 count=0
 
 
-def Max(node, k, f):
+def Max(node, k, f,tree):
     global count
     count+=1
     # global tree
@@ -16,14 +16,17 @@ def Max(node, k, f):
         user = Heuristic(node, 'y', 'r')
         node.value = computer - 2 * user
         #node.value = Heuristic(node,'r','y')
+        # print(user)
+        # print(computer)
+        # print(node.value)
         return node.value
     list1 = []
     for i in range(len(node.children)):
         temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        # n = tree.create_node("0", temp.id, parent=node.id)
-        value = Min(temp, k - 1, f)
-        # n.tag=value
+        n = tree.create_node("0", temp.id, parent=node.id)
+        value = Min(temp, k - 1, f,tree)
+        n.tag=value
         list1.append(value)
     if len(list1)==0:
         computer = Heuristic(node, 'r', 'y')
@@ -38,7 +41,7 @@ def Max(node, k, f):
     return node.value
 
 
-def Min(node, k, f):
+def Min(node, k, f,tree):
     # global tree
     global count
     count += 1
@@ -52,9 +55,9 @@ def Min(node, k, f):
     for i in range(len(node.children)):
         temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        # n=tree.create_node("0", temp.id, parent=node.id)
-        value = Max(temp, k - 1, f)
-        # n.tag=value
+        n=tree.create_node("0", temp.id, parent=node.id)
+        value = Max(temp, k - 1, f,tree)
+        n.tag=value
         list1.append(value)
     if len(list1)==0:
         computer = Heuristic(node, 'r', 'y')
@@ -69,15 +72,16 @@ def Min(node, k, f):
 
 
 def MinMax(state, k, f):
+    tree=Tree()
     global count
 
     # global tree
-    # n=tree.create_node("0",state.id)
-    state1, value = Max(state, k, f)
+    n=tree.create_node("0",state.id)
+    state1, value = Max(state, k, f,tree)
     state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
-    # n.tag=value
-    # tree.show()
-    # tree=Tree()
+    n.tag=value
+    tree.show()
+    tree=Tree()
     count1=count
     count=0
     return state2,count1

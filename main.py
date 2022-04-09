@@ -5,6 +5,7 @@ from Node import *
 from MinMax import *
 from gui import *
 from AlphaBeta import *
+from math import inf
 
 if __name__ == '__main__':
     # print('Select the mode you want to play')
@@ -19,7 +20,10 @@ if __name__ == '__main__':
     #print(Heuristic(board))
     #temp=MinMax(board, 3, 3)
     #print(temp.col3)
-    game(board,2,1)
+    print(inf)
+
+    game(board,2,4)
+
     #print(Heuristic(board))
     #res,tree=MinMax(board, 5, 5)
     #AlphaBeta(board,5,5)

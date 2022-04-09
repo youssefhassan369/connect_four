@@ -1,6 +1,6 @@
 import pygame
 import sys
-import math
+from math import inf,floor
 from Game import *
 from MinMax import *
 from AlphaBeta import *
@@ -37,10 +37,10 @@ def game(board, mode,k):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         x = event.pos[0]
                         y = event.pos[1]
-                        column_number = int(math.floor(x / SQUARESIZE))
+                        column_number = int(floor(x / SQUARESIZE))
                         flag,result = update_col(board, column_number)
                         if flag:
-                            board=Node(0,-99,99,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
+                            board=Node(0,-inf,inf,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
                             turn += 1
                             turn = turn % 2
                             draw_board(board)
@@ -48,14 +48,14 @@ def game(board, mode,k):
                 if turn == 0:
                     if mode == 1:
                         f,count1= MinMax(board, k, k)
-                        board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                        board=Node(0,-inf,inf,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
                         print("Nodes expanded : ",count1)
                         turn += 1
                         turn = turn % 2
                         draw_board(board)
                     if mode == 2:
                         f,count2= AlphaBeta(board, k, k)
-                        board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                        board=Node(0,-inf,inf,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
                         print("Nodes expanded : ", count2)
                         turn += 1
                         turn = turn % 2
