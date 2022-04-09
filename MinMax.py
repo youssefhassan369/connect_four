@@ -3,85 +3,72 @@ from Heuristic import Heuristic
 import numpy as np
 from treelib import Node as N, Tree
 
-# tree = Tree()
-count=0
 
+def Max(node, k, f, tree, count):
+    count += 1
 
-def Max(node, k, f,tree):
-    global count
-    count+=1
-    # global tree
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
         node.value = computer - 2 * user
-        #node.value = Heuristic(node,'r','y')
-        # print(user)
-        # print(computer)
-        # print(node.value)
+
+        return node.value, count
+    list1 = []
+    for i in range(len(node.children)):
+        temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+                    node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
+        n = tree.create_node("0", temp.id, parent=node.id)
+        value, count = Min(temp, k - 1, f, tree, count)
+        n.tag = value
+        list1.append(value)
+    if len(list1) == 0:
+        computer = Heuristic(node, 'r', 'y')
+        user = Heuristic(node, 'y', 'r')
+        node.value = computer - 2 * user
+
+        return node.value, count
+    node.value = max(list1)
+    if k == f:
+        return node.children[np.argmax(list1)], node.value, count
+    return node.value, count
+
+
+def Min(node, k, f, tree, count):
+    count += 1
+    if k == 0:
+        computer = Heuristic(node, 'r', 'y')
+        user = Heuristic(node, 'y', 'r')
+        node.value = computer - 2 * user
+
         return node.value
     list1 = []
     for i in range(len(node.children)):
         temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
         n = tree.create_node("0", temp.id, parent=node.id)
-        value = Min(temp, k - 1, f,tree)
-        n.tag=value
+        value, count = Max(temp, k - 1, f, tree, count)
+        n.tag = value
         list1.append(value)
-    if len(list1)==0:
+    if len(list1) == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
         node.value = computer - 2 * user
-        #node.value=Heuristic(node,'r','y')
-        return node.value
-    node.value = max(list1)
-    if k == f:
-        # print(node.children[np.argmax(list1)].col0)
-        return node.children[np.argmax(list1)], node.value
-    return node.value
 
-
-def Min(node, k, f,tree):
-    # global tree
-    global count
-    count += 1
-    if k == 0:
-        computer = Heuristic(node, 'r', 'y')
-        user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
-        #node.value = Heuristic(node,'r','y')
-        return node.value
-    list1 = []
-    for i in range(len(node.children)):
-        temp = Node(0, -99, 99, node.children[i].col0, node.children[i].col1, node.children[i].col2,
-                    node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
-        n=tree.create_node("0", temp.id, parent=node.id)
-        value = Max(temp, k - 1, f,tree)
-        n.tag=value
-        list1.append(value)
-    if len(list1)==0:
-        computer = Heuristic(node, 'r', 'y')
-        user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
-       #node.value=Heuristic(node,'r','y')
-        return node.value
+        return node.value, count
     node.value = min(list1)
     if k == f:
-        return node.children[np.argmin(list1)], node.value
-    return node.value
+        return node.children[np.argmin(list1)], node.value, count
+    return node.value, count
 
 
 def MinMax(state, k, f):
-    tree=Tree()
-    global count
-
-    # global tree
-    n=tree.create_node("0",state.id)
-    state1, value = Max(state, k, f,tree)
+    tree = Tree()
+    count = 0
+    n = tree.create_node("0", state.id)
+    state1, value, count = Max(state, k, f, tree, count)
     state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
-    n.tag=value
+    n.tag = value
     tree.show()
-    tree=Tree()
-    count1=count
-    count=0
-    return state2,count1
+    tree = Tree()
+
+    return state2, count

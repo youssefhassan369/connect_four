@@ -1,10 +1,10 @@
 import pygame
 import sys
-from math import inf,floor
+from math import inf, floor
 from Game import *
 from MinMax import *
 from AlphaBeta import *
-import copy
+import time
 
 Rows = 6
 Columns = 7
@@ -21,7 +21,8 @@ width = Columns * SQUARESIZE
 size = (width, height)
 screen = pygame.display.set_mode(size)
 
-def game(board, mode,k):
+
+def game(board, mode, k):
     pygame.init()
     myfont = pygame.font.SysFont("monospace", 65)
     draw_board(board)
@@ -38,25 +39,36 @@ def game(board, mode,k):
                         x = event.pos[0]
                         y = event.pos[1]
                         column_number = int(floor(x / SQUARESIZE))
-                        flag,result = update_col(board, column_number)
+                        flag, result = update_col(board, column_number)
                         if flag:
-                            board=Node(0,-inf,inf,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
+                            board = Node(0, -inf, inf, result.col0, result.col1, result.col2, result.col3, result.col4,
+                                         result.col5, result.col6)
                             turn += 1
                             turn = turn % 2
                             draw_board(board)
 
                 if turn == 0:
                     if mode == 1:
-                        f,count1= MinMax(board, k, k)
-                        board=Node(0,-inf,inf,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
-                        print("Nodes expanded : ",count1)
+                        t1=time.time()
+                        f, count1 = MinMax(board, k, k)
+                        t2=time.time()
+                        board = Node(0, -inf, inf, f.col0, f.col1, f.col2, f.col3, f.col4, f.col5, f.col6)
+                        print("Nodes expanded : ", count1)
+                        print("Time = ", t2-t1,"sec")
+                        print("")
+                        print("")
                         turn += 1
                         turn = turn % 2
                         draw_board(board)
                     if mode == 2:
-                        f,count2= AlphaBeta(board, k, k)
-                        board=Node(0,-inf,inf,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                        t1=time.time()
+                        f, count2 = AlphaBeta(board, k, k)
+                        t2 = time.time()
+                        board = Node(0, -inf, inf, f.col0, f.col1, f.col2, f.col3, f.col4, f.col5, f.col6)
                         print("Nodes expanded : ", count2)
+                        print("Time = ", t2 - t1, "sec")
+                        print("")
+                        print("")
                         turn += 1
                         turn = turn % 2
                         pygame.display.flip()
@@ -68,10 +80,6 @@ def game(board, mode,k):
                 pygame.display.flip()
                 draw_board(board)
 
-
-    user,computer=Score(board)
-    print(user)
-    print(computer)
 
 def draw_board(board):
     total_string = ''.join(reversed(board.col0)) + ''.join(reversed(board.col1)) + ''.join(
@@ -94,62 +102,62 @@ def update_col(board, col):
     if col == 0:
         index = board.col0.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col0)
         temp[index] = 'y'
         board.col0 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 1:
         index = board.col1.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col1)
         temp[index] = 'y'
         board.col1 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 2:
         index = board.col2.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col2)
         temp[index] = 'y'
         board.col2 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 3:
         index = board.col3.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col3)
         temp[index] = 'y'
         board.col3 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 4:
         index = board.col4.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col4)
         temp[index] = 'y'
         board.col4 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 5:
         index = board.col5.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col5)
         temp[index] = 'y'
         board.col5 = "".join(temp)
-        return True,board
+        return True, board
 
     if col == 6:
         index = board.col6.find('e')
         if index == -1:
-            return False,board
+            return False, board
         temp = list(board.col6)
         temp[index] = 'y'
         board.col6 = "".join(temp)
-        return True,board
+        return True, board
