@@ -57,10 +57,11 @@ def AlphaBetaMax(node, k, f):
 
 
 def AlphaBeta(state, k, f):
-    global tree
-    n=tree.create_node("0", state.id)
-    state, value = AlphaBetaMax(state, k, f)
-    n.tag = value + ',' + state.alpha + ',' + state.beta
-    tree.show()
+    #global tree
+    #n=tree.create_node("0", state.id)
+    state1, value = AlphaBetaMax(state, k, f)
+    state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
+    #n.tag = value + ',' + state.alpha + ',' + state.beta
+    #tree.show()
 
-    return state, tree
+    return state2
