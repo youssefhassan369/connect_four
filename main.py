@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     #print(Heuristic(board))
     #MinMax(board, 5, 5)
-    game(board)
+    game(board,1)
     #print(Heuristic(board))
     #MinMax(board, 5, 5)
    # AlphaBeta(board,5,5)

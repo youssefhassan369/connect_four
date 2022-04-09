@@ -1,6 +1,10 @@
 import pygame
 import sys
 import math
+from Game import *
+from MinMax import *
+from AlphaBeta import *
+
 Rows = 6
 Columns = 7
 
@@ -16,24 +20,35 @@ width = Columns * SQUARESIZE
 size = (width, height)
 screen = pygame.display.set_mode(size)
 
-def game(board):
+def game(board,mode):
     pygame.init()
     draw_board(board)
     pygame.display.update()
-    turn=0
-    xx=0
-    while True:
+    turn = 1
+    while GameEnd(board) == False:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            if turn==1:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    x = event.pos[0]
+                    y = event.pos[1]
+                    column_number=int(math.floor(x/SQUARESIZE))
+                    flag = update_col(board, column_number)
+                    if flag == True:
+                        turn+=1
+                        turn=turn%2
+            if turn==0:
+                if mode==1:
+                    state,tree=MinMax(board,3,3)
+                    board.col0=state.col0
+                    board.col1=state.col1
+                    board.col2=state.col2
+                    board.col3=state.col3
+                    board.col4=state.col4
+                    board.col5=state.col5
+                    board.col6=state.col6
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                flag = False
-                x = event.pos[0]
-                y = event.pos[1]
-                column_number=int(math.floor(x/SQUARESIZE))
-                while flag==False:
-                    flag=update_col(board,column_number)
 
 
         draw_board(board)
@@ -116,4 +131,3 @@ def update_col(board,col):
         temp[index] = 'y'
         board.col6 = "".join(temp)
         return True
-    
