@@ -21,43 +21,53 @@ width = Columns * SQUARESIZE
 size = (width, height)
 screen = pygame.display.set_mode(size)
 
-
 def game(board, mode,k):
     pygame.init()
+    myfont = pygame.font.SysFont("monospace", 65)
     draw_board(board)
-    pygame.display.update()
+    pygame.display.flip()
     turn = 1
-    while GameEnd(board) == False:
+
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if turn == 1:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    x = event.pos[0]
-                    y = event.pos[1]
-                    column_number = int(math.floor(x / SQUARESIZE))
-                    flag,result = update_col(board, column_number)
-                    if flag:
-                        board=Node(0,-99,99,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
+            if GameEnd(board) == False:
+                if turn == 1:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        x = event.pos[0]
+                        y = event.pos[1]
+                        column_number = int(math.floor(x / SQUARESIZE))
+                        flag,result = update_col(board, column_number)
+                        if flag:
+                            board=Node(0,-99,99,result.col0,result.col1,result.col2,result.col3,result.col4,result.col5,result.col6)
+                            turn += 1
+                            turn = turn % 2
+                            draw_board(board)
+
+                if turn == 0:
+                    if mode == 1:
+                        f,count1= MinMax(board, k, k)
+                        board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                        print("Nodes expanded : ",count1)
                         turn += 1
                         turn = turn % 2
                         draw_board(board)
+                    if mode == 2:
+                        f,count2= AlphaBeta(board, k, k)
+                        board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
+                        print("Nodes expanded : ", count2)
+                        turn += 1
+                        turn = turn % 2
+                        pygame.display.flip()
+                        draw_board(board)
+            else:
+                user, computer = Score(board)
+                label = myfont.render(("Player:" + str(user) + "  AI:" + str(computer)), 1, red)
+                screen.blit(label, (40, 10))
+                pygame.display.flip()
+                draw_board(board)
 
-            if turn == 0:
-                if mode == 1:
-                    f,count1= MinMax(board, k, k)
-                    board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
-                    print("Nodes expanded : ",count1)
-                    turn += 1
-                    turn = turn % 2
-                    draw_board(board)
-                if mode == 2:
-                    f,count2= AlphaBeta(board, k, k)
-                    board=Node(0,-99,99,f.col0,f.col1,f.col2,f.col3,f.col4,f.col5,f.col6)
-                    print("Nodes expanded : ", count2)
-                    turn += 1
-                    turn = turn % 2
-                    draw_board(board)
 
     user,computer=Score(board)
     print(user)
