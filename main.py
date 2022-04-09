@@ -19,7 +19,7 @@ if __name__ == '__main__':
     #print(Heuristic(board))
     #temp=MinMax(board, 3, 3)
     #print(temp.col3)
-    game(board,2,5)
+    game(board,1,5)
     #print(Heuristic(board))
     #res,tree=MinMax(board, 5, 5)
     #AlphaBeta(board,5,5)

@@ -38,7 +38,7 @@ def AlphaBetaMin(node, k, f):
 
 
 def AlphaBetaMax(node, k, f):
-    # global tree
+    global tree
     global count
     count += 1
     if k == 0:
@@ -51,13 +51,13 @@ def AlphaBetaMax(node, k, f):
         temp = Node(0, -9999, node.alpha, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
         #print('max')
-        # n = tree.create_node("0", temp.id, parent=node.id)
+        n = tree.create_node("0", temp.id, parent=node.id)
         # print(n)
         value = Min(temp, k - 1, f)
         list1.append(value)
         best = max(list1)
         node.alpha = max(node.alpha, best)
-        # n.tag = value + ',' + node.alpha + ',' + node.beta
+        n.tag = str(value) + ',' + str(node.alpha) + ',' + str(node.beta)
         if temp.alpha >= temp.beta:
             break
 
@@ -69,14 +69,16 @@ def AlphaBetaMax(node, k, f):
 
 def AlphaBeta(state, k, f):
     global count
-    count=0
-    # global tree
-    # n=tree.create_node("0", state.id)
+    #count=0
+    global tree
+    n=tree.create_node("0", state.id)
     state1, value = AlphaBetaMax(state, k, f)
     state2 = Node(0, 0, 0, state1.col0, state1.col1, state1.col2, state1.col3, state1.col4, state1.col5, state1.col6)
     # n.tag = value + ',' + state.alpha + ',' + state.beta
-    # tree.show()
+    tree.show()
+    tree=Tree()
     #print(count)
-    #count=0
+    count1=count
+    count=0
 
-    return state2,count
+    return state2,count1
