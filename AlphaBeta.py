@@ -10,7 +10,7 @@ def AlphaBetaMin(node, k, f, tree, count):
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
         return node.value, count
     list1 = []
     for i in range(len(node.children)):
@@ -29,7 +29,7 @@ def AlphaBetaMin(node, k, f, tree, count):
     if len(list1) == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value, count
     node.value = min(list1)
@@ -44,7 +44,7 @@ def AlphaBetaMax(node, k, f, tree, count):
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
         return node.value, count
     list1 = []
     for i in range(len(node.children)):
@@ -63,7 +63,7 @@ def AlphaBetaMax(node, k, f, tree, count):
     if len(list1) == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value, count
     node.value = max(list1)

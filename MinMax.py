@@ -13,7 +13,7 @@ def Max(node, k, f,tree,count):
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value,count
     list1 = []
@@ -27,7 +27,7 @@ def Max(node, k, f,tree,count):
     if len(list1)==0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value,count
     node.value = max(list1)
@@ -43,7 +43,7 @@ def Min(node, k, f,tree,count):
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value,count
     list1 = []
@@ -57,7 +57,7 @@ def Min(node, k, f,tree,count):
     if len(list1)==0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
-        node.value = computer - 2 * user
+        node.value = computer - user
 
         return node.value,count
     node.value = min(list1)

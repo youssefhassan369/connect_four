@@ -26,7 +26,6 @@ def game(board, mode, k):
     pygame.init()
     myfont = pygame.font.SysFont("monospace", 65)
     draw_board(board)
-    pygame.display.flip()
     turn = 1
 
     while True:
@@ -71,13 +70,12 @@ def game(board, mode, k):
                         print("")
                         turn += 1
                         turn = turn % 2
-                        pygame.display.flip()
                         draw_board(board)
             else:
                 user, computer = Score(board)
                 label = myfont.render(("Player:" + str(user) + "  AI:" + str(computer)), 1, red)
                 screen.blit(label, (40, 10))
-                pygame.display.flip()
+                pygame.display.update()
                 draw_board(board)
 
 
