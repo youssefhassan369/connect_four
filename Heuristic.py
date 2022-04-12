@@ -21,22 +21,22 @@ def FindMatchingRow(total_string, x, y):
             # 3 red after each other (4th empty on the right)
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1)] == x and total_string[
                 i + (j * step) + (step * 2)] == x and total_string[i + (j * step) + (step * 3)] == 'e':
-                Row_score += 3
+                Row_score += 10
 
             # 3 red after each other (4th empty on the left)
             if total_string[i + (j * step)] == 'e' and total_string[i + (j * step) + (step * 1)] == x and total_string[
                 i + (j * step) + (step * 2)] == x and total_string[i + (j * step) + (step * 3)] == x:
-                Row_score += 3
+                Row_score += 10
 
             # 1 red then empty then 2 red after each other
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1)] == 'e' and total_string[
                 i + (j * step) + (step * 2)] == x and total_string[i + (j * step) + (step * 3)] == x:
-                Row_score += 3
+                Row_score += 10
 
             # 2 red after each other then empty then 1 red after each
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1)] == x and total_string[
                 i + (j * step) + (step * 2)] == 'e' and total_string[i + (j * step) + (step * 3)] == x:
-                Row_score += 3
+                Row_score += 10
 
             # 4 red after each other
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1)] == x and total_string[
@@ -108,22 +108,22 @@ def FindMatchingCol(total_string, x, y):
             # 3 red after each other (4th empty on the right)
             if total_string[i * step + j] == x and total_string[i * step + j + 1] == x and total_string[
                 i * step + j + 2] == x and total_string[i * step + j + 3] == 'e':
-                Column_score += 3
+                Column_score += 10
 
             # 3 red after each other (4th empty on the left)
             if total_string[i * step + j] == 'e' and total_string[i * step + j + 1] == x and total_string[
                 i * step + j + 2] == x and total_string[i * step + j + 3] == x:
-                Column_score += 3
+                Column_score += 10
 
             # 1 red then empty then 2 red after each other
             if total_string[i * step + j] == x and total_string[i * step + j + 1] == 'e' and total_string[
                 i * step + j + 2] == x and total_string[i * step + j + 3] == x:
-                Column_score += 3
+                Column_score += 10
 
             # 2 red after each other then empty then 1 red after each
             if total_string[i * step + j] == x and total_string[i * step + j + 1] == x and total_string[
                 i * step + j + 2] == 'e' and total_string[i * step + j + 3] == x:
-                Column_score += 3
+                Column_score += 10
 
             # 4 red after each other
             if total_string[i * step + j] == x and total_string[i * step + j + 1] == x and total_string[
@@ -196,25 +196,25 @@ def FindMatchingDiag1(total_string, x, y):  # +ve diagonal
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1) + 1] == x and \
                     total_string[i + (j * step) + (step * 2) + 2] == x and total_string[
                 i + (j * step) + (step * 3) + 3] == 'e':
-                Diag1_score += 3
+                Diag1_score += 10
 
             # 3 red after each other (4th empty on the left)
             if total_string[i + (j * step)] == 'e' and total_string[i + (j * step) + (step * 1) + 1] == x and \
                     total_string[i + (j * step) + (step * 2) + 2] == x and total_string[
                 i + (j * step) + (step * 3) + 3] == x:
-                Diag1_score += 3
+                Diag1_score += 10
 
             # 1 red then empty then 2 red after each other
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1) + 1] == 'e' and \
                     total_string[i + (j * step) + (step * 2) + 2] == x and total_string[
                 i + (j * step) + (step * 3) + 3] == x:
-                Diag1_score += 3
+                Diag1_score += 10
 
             # 2 red after each other then empty then 1 red after each
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1) + 1] == x and \
                     total_string[i + (j * step) + (step * 2) + 2] == 'e' and total_string[
                 i + (j * step) + (step * 3) + 3] == x:
-                Diag1_score += 3
+                Diag1_score += 10
 
             # 4 red after each other
             if total_string[i + (j * step)] == x and total_string[i + (j * step) + (step * 1) + 1] == x and \
@@ -297,25 +297,25 @@ def FindMatchingDiag2(total_string, x, y):  # -ve diagonal
             if total_string[i + (j * step) + (step * 3) - 3] == x and total_string[
                 i + (j * step) + (step * 2) - 2] == x and total_string[i + (j * step) + (step * 1) - 1] == x and \
                     total_string[i + (j * step)] == 'e':
-                Diag2_score += 3
+                Diag2_score += 10
 
             # 3 red after each other (4th empty on the left)
             if total_string[i + (j * step) + (step * 3) - 3] == 'e' and total_string[
                 i + (j * step) + (step * 2) - 2] == x and total_string[i + (j * step) + (step * 1) - 1] == x and \
                     total_string[i + (j * step)] == x:
-                Diag2_score += 3
+                Diag2_score += 10
 
             # 1 red then empty then 2 red after each other
             if total_string[i + (j * step) + (step * 3) - 3] == x and total_string[
                 i + (j * step) + (step * 2) - 2] == 'e' and total_string[i + (j * step) + (step * 1) - 1] == x and \
                     total_string[i + (j * step)] == x:
-                Diag2_score += 3
+                Diag2_score += 10
 
             # 2 red after each other then empty then 1 red after each
             if total_string[i + (j * step) + (step * 3) - 3] == x and total_string[
                 i + (j * step) + (step * 2) - 2] == x and total_string[i + (j * step) + (step * 1) - 1] == 'e' and \
                     total_string[i + (j * step)] == x:
-                Diag2_score += 3
+                Diag2_score += 10
 
             # 4 red after each other
             if total_string[i + (j * step) + (step * 3) - 3] == x and total_string[

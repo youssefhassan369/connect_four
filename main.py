@@ -11,5 +11,5 @@ if __name__ == '__main__':
 
     board = generateInitialState()
 
-    game(board,2,4)
+    game(board,2,7)
 
