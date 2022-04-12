@@ -13,8 +13,8 @@ def AlphaBetaMin(node, k, f, tree, count):
         node.value = computer - user
         return node.value, count
     list1 = []
-    for i in range(len(node.children)):
-        temp = Node(0, node.beta, inf, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+    for i in range(len(node.children)): #edited given value to child
+        temp = Node(0, node.alpha, node.beta, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
 
         n = tree.create_node("0", temp.id, parent=node.id)
@@ -40,15 +40,15 @@ def AlphaBetaMin(node, k, f, tree, count):
 
 def AlphaBetaMax(node, k, f, tree, count):
     count += 1
-    print(count)
+    #print(count)
     if k == 0:
         computer = Heuristic(node, 'r', 'y')
         user = Heuristic(node, 'y', 'r')
         node.value = computer - user
         return node.value, count
     list1 = []
-    for i in range(len(node.children)):
-        temp = Node(0, -inf, node.alpha, node.children[i].col0, node.children[i].col1, node.children[i].col2,
+    for i in range(len(node.children)):#edited given value to child
+        temp = Node(0, node.alpha, node.beta, node.children[i].col0, node.children[i].col1, node.children[i].col2,
                     node.children[i].col3, node.children[i].col4, node.children[i].col5, node.children[i].col6)
 
         n = tree.create_node("0", temp.id, parent=node.id)
