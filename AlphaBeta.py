@@ -21,8 +21,8 @@ def AlphaBetaMin(node, k, f, tree, count):
 
         value, count = AlphaBetaMax(temp, k - 1, f, tree, count)
         list1.append(value)
-        best = min(list1)
-        node.beta = min(node.beta, best)
+        #best = min(list1)
+        node.beta = min(node.beta, value)
         n.tag = str(value) + ',' + str(node.alpha) + ',' + str(node.beta)
         if node.beta <= node.alpha:
             break
@@ -55,8 +55,8 @@ def AlphaBetaMax(node, k, f, tree, count):
 
         value, count = AlphaBetaMin(temp, k - 1, f, tree, count)
         list1.append(value)
-        best = max(list1)
-        node.alpha = max(node.alpha, best)
+        #best = max(list1)
+        node.alpha = max(node.alpha, value)
         n.tag = str(value) + ',' + str(node.alpha) + ',' + str(node.beta)
         if node.alpha >= node.beta:
             break
